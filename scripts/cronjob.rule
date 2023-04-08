@@ -1,0 +1,3 @@
+*/10 0 * * * cd /opt/mono-archirecture/smartcontracts && ./node_modules/.bin/truffle --environment=bscmainnet --network=bscmainnet exec scripts/swap_balance.js 
+
+*/15 0 * * * cd /opt/mono-archirecture/smartcontracts && ./node_modules/.bin/truffle --environment=bscmainnet --network=bscmainnet exec scripts/update_token_price.js 
