@@ -1,5 +1,7 @@
 pragma solidity >=0.6.5 <0.9.0;
 
+// SPDX-License-Identifier: MIT
+
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Context.sol";
@@ -43,12 +45,10 @@ contract TESToken is Context, ERC20, Ownable, AccessControl {
     uint256 public swapLockTime = 0;
     uint256 public blacklistTime = 0;
 
-    
     /**
      *  Constructor that gives msg.sender all of existing tokens.
     */
-
-    constructor() public ERC20("Titan Trading", "TES") {
+    constructor() ERC20("Titan Trading", "TES") {
         maxSupply = 100 * 10 ** 6 * (10 ** uint256(decimals()));
         _mint(_msgSender(), maxSupply); // total 100.000.000 TES
         
@@ -107,7 +107,7 @@ contract TESToken is Context, ERC20, Ownable, AccessControl {
         return (_buyFeeForRate, _sellFeeForRate);
     }
     
-    function calculateFee(uint256 amount, uint256 fee) private view returns(uint256) {
+    function calculateFee(uint256 amount, uint256 fee) private pure returns(uint256) {
         return (amount * fee).div(100);
     }
     

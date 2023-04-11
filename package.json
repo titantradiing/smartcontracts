@@ -31,7 +31,7 @@
     "@openzeppelin/contracts-upgradeable": "4.4.1",
     "@openzeppelin/test-helpers": "^0.5.15",
     "@openzeppelin/truffle-upgrades": "^1.8.1",
-    "@truffle/hdwallet-provider": "^1.6.0",
+    "@truffle/hdwallet-provider": "^1.7.0",
     "@uniswap/v2-core": "^1.0.1",
     "@uniswap/v2-periphery": "^1.1.0-beta.0",
     "abdk-libraries-solidity": "v2.5",
