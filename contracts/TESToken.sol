@@ -42,6 +42,12 @@ contract TESToken is Context, ERC20, Ownable, AccessControl {
     uint256 public swapLockTime = 0;
     uint256 public blacklistTime = 0;
 
+    receive() external payable  { 
+    }
+
+    fallback() external payable {
+    }
+
     /**
      *  Constructor that gives msg.sender all of existing tokens.
     */
