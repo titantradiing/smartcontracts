@@ -111,3 +111,4 @@ contracts/openzeppelin
 contracts/chainlink
 
 .secret
+TESToken.sol.ignore
