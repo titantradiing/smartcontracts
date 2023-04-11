@@ -43,8 +43,8 @@
       ]
     },
     "/Users/cqshinn/go/1.16.6/src/github.com/ava-labs/roi/iai/tes/contracts/TESToken.sol": {
-      "lastModificationDate": 1681251282552,
-      "contentHash": "b6931642130713af61764fcf3df0b109",
+      "lastModificationDate": 1681251360237,
+      "contentHash": "71e9d9a52fb68e9f2dabb1213cd67555",
       "sourceName": "contracts/TESToken.sol",
       "solcConfig": {
         "version": "0.8.7",

@@ -36,11 +36,8 @@ contract TESToken is Context, ERC20, Ownable, AccessControl {
 
 	mapping(address => bool) private _isExcludedFromFee;
     mapping(address => bool) private _isExcluded;
-    
-    bool public bpEnabled = false;
-    
+        
     uint256 public swapLockTime = 0;
-    uint256 public blacklistTime = 0;
 
     receive() external payable  { 
     }
