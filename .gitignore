@@ -112,3 +112,6 @@ contracts/chainlink
 
 .secret
 TESToken.sol.ignore
+coverage
+coverage.json
+coverageEnv

@@ -33,14 +33,11 @@ contract TESToken is Context, ERC20, Ownable, AccessControl {
 	uint256 private _sellFeeForRate = 0;
 	
 	mapping(address => bool) private whiteList;	
-    mapping(address => bool) private blacklist;
 
 	mapping(address => bool) private _isExcludedFromFee;
     mapping(address => bool) private _isExcluded;
     
-    BotPrevent public BP;
     bool public bpEnabled = false;
-    bool public BPDisabledForever = false;    
     
     uint256 public swapLockTime = 0;
     uint256 public blacklistTime = 0;
@@ -77,11 +74,6 @@ contract TESToken is Context, ERC20, Ownable, AccessControl {
 		swapLockTime = block.timestamp + 365 days;
         
     }
-
-    function initblacklistTime() public onlyOwner {
-        // init or reset black list time for add more 365 days
-        blacklistTime = block.timestamp + 365 days;
-    }
     
     function excludeFromFee(address account) public onlyOwner {
         _isExcludedFromFee[account] = true;
@@ -94,12 +86,12 @@ contract TESToken is Context, ERC20, Ownable, AccessControl {
     
     // BUY/SELL FEE
     function setSellFeeRate(uint256 fee) external onlyOwner {
-        require(fee <= 6, "fee need to set lower than 15%");
+        require(fee <= 6, "fee need to set lower than 6%");
         _sellFeeForRate = fee;
     }
 
     function setBuyFeeRate(uint256 fee) external onlyOwner {
-        require(fee >= 6, "fee need to set greater than equal 0%");
+        require(fee >= 0, "fee need to set greater than equal 0%");
         _buyFeeForRate = fee;
     }
     
@@ -131,25 +123,6 @@ contract TESToken is Context, ERC20, Ownable, AccessControl {
 		whiteList[target] = false;
 		emit EventWhiteList(target, false);
 	}	
-
-    function setBlackLists(address[] memory addresses) public onlyOwner {
-		require(block.timestamp <= blacklistTime, "BLACKLISTTIME: INVALID");
-		for (uint256 i = 0; i < addresses.length; i++) {
-			require(
-				addresses[i] != pancakeswapV2Pair,
-				"CAN'T BLACKLIST PAIR ADDRESS"
-			);
-			blacklist[addresses[i]] = true;
-			emit UpdateBlackList(addresses[i], 1);
-		}
-	}
-
-	function removeBlackLists(address[] memory addresses) public onlyOwner {
-		for (uint256 i = 0; i < addresses.length; i++) {
-			blacklist[addresses[i]] = false;
-			emit UpdateBlackList(addresses[i], 0);
-		}
-	}
 	
 	function updateSwapBalance(uint256 amount) external onlyOwner {
 		uint256 contractSwapBalance = balanceOf(address(this));
@@ -185,16 +158,6 @@ contract TESToken is Context, ERC20, Ownable, AccessControl {
 		address recipient,
 		uint256 amount
 	) internal virtual override {	
-
-        require(
-			!blacklist[sender] && !blacklist[recipient],
-			"Blacklisted account"
-		);	
-		
-		if (bpEnabled && !BPDisabledForever){
-            BP.protect(sender, recipient, amount);
-        }
-
         require(sender != address(0), "ERC20: transfer from the zero address");
         require(recipient != address(0), "ERC20: transfer to the zero address");
         require(amount > 0, "Transfer amount must be greater than zero");
@@ -220,23 +183,8 @@ contract TESToken is Context, ERC20, Ownable, AccessControl {
 		_burn(_msgSender(), amount);
 	}
 	
-	function setBPAddrss(address _bp) external onlyOwner {
-        require(address(BP)== address(0), "Can only be initialized once");
-        BP = BotPrevent(_bp);
-    }
-
-    function setBpEnabled(bool _enabled) external onlyOwner {
-        bpEnabled = _enabled;
-    }
-
-    function setBotProtectionDisableForever() external onlyOwner{
-        require(BPDisabledForever == false);
-        BPDisabledForever = true;
-    }	
-	
 	event EventWhiteList(address indexed target, bool state);
 	event EventChangeSwapBalanceAddress(address indexed addr);
-	event UpdateBlackList(address indexed target, uint8 isAdd);
 	event Log(string message);
 
 }
