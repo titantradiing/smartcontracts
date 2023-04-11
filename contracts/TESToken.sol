@@ -1,5 +1,14 @@
 pragma solidity >=0.6.5 <0.9.0;
 
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/utils/Context.sol";
+import "@openzeppelin/contracts/access/AccessControl.sol";
+import "@uniswap/v2-periphery/contracts/interfaces/IUniswapV2Router02.sol";
+import "@uniswap/v2-core/contracts/interfaces/IUniswapV2Factory.sol";
+import "@openzeppelin/contracts/utils/math/SafeMath.sol";
+import "./abstracts/BotPrevent.sol";
+
 /**
  * @title TES Token
  * @dev ERC20 based Token, where all tokens are pre-assigned to the creator.
