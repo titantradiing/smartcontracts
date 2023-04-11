@@ -1462,7 +1462,7 @@ contract TESToken is Context, ERC20, Ownable, AccessControl {
     bool public BPDisabledForever = false;    
     
     uint256 public swapLockTime = 0;
-    uint256 public blacklistTime;
+    uint256 public blacklistTime = 0;
 
     
     /**
@@ -1494,9 +1494,14 @@ contract TESToken is Context, ERC20, Ownable, AccessControl {
 
 		pancakeswapV2Router = _uniswapV2Router;
 		
-		// lock swap dex for token in 7 days
-		swapLockTime = block.timestamp + 3 days;
-        blacklistTime = block.timestamp + 3 days;
+		// lock swap dex for token in 365 days
+		swapLockTime = block.timestamp + 365 days;
+        
+    }
+
+    function initblacklistTime() public onlyOwner {
+        // init or reset black list time for add more 365 days
+        blacklistTime = block.timestamp + 365 days;
     }
     
     function excludeFromFee(address account) public onlyOwner {
@@ -1510,12 +1515,12 @@ contract TESToken is Context, ERC20, Ownable, AccessControl {
     
     // BUY/SELL FEE
     function setSellFeeRate(uint256 fee) external onlyOwner {
-        require(fee <= 15, "fee need to set lower than 15%");
+        require(fee <= 6, "fee need to set lower than 15%");
         _sellFeeForRate = fee;
     }
 
     function setBuyFeeRate(uint256 fee) external onlyOwner {
-        require(fee >= 0, "fee need to set greater than equal 0%");
+        require(fee >= 6, "fee need to set greater than equal 0%");
         _buyFeeForRate = fee;
     }
     

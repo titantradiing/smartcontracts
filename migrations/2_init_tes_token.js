@@ -20,17 +20,12 @@ module.exports = async function (deployer, network, accounts) {
   await deployer.deploy(TESToken);
   const tesToken = await TESToken.deployed();  
   
-  if (network === 'bsctestnet' || network === 'bsctestnet-fork') {
+  if (network === 'bscmainnet' || network === 'bscmainnet-fork' || network === 'bsctestnet' || network === 'bsctestnet-fork') {
     await tesToken.initSwap(pancakeswapRouter);
+    await tesToken.initblacklistTime();
     await tesToken.setBpEnabled(false);
     await tesToken.setSwapBalance(accounts[0]);
   }
-
-  // if (network === 'bscmainnet' || network === 'bscmainnet-fork') {
-  //   await tesToken.initSwap(pancakeswapRouter);
-  //   await tesToken.setBpEnabled(false);
-  //   await tesToken.setSwapBalance(accounts[0]);
-  // }
   
 };
 
