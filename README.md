@@ -1,6 +1,6 @@
 # TES smart contract 
 
-Smart contract for TES which a rpg blockchain nft game
+Smart contract for TES which a token for titan trading bot
 
 ### Requirement:
 - nodejs >= 14.7
