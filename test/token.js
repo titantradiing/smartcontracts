@@ -128,9 +128,20 @@ describe('TESToken', function () {
         (await erc20.balanceOf(anotherAccount3.address)).toString()
     ).to.not.equal((amount - 0.0).toString());
 
+    
+    await erc20.setEnableTransferFee(false);
+
+    transferTx = await erc20.transfer(anotherAccount3.address, amount);
+    await transferTx.wait();
+
+    expect(
+        (await erc20.balanceOf(anotherAccount3.address)).toString()
+    ).to.not.equal((amount + amount - 5.0).toString());
+
     await erc20.removeWhiteLists(anotherAccount2.address);
 
     const a = ethers.utils.parseUnits("5.0");
+    
     try{
         await erc20.updateSwapBalance(a);
     } catch(e) {
