@@ -30,19 +30,20 @@ contract TESToken is Context, ERC20, Ownable, AccessControl {
     
     uint256 private _buyFeeForRate = 0;
 	uint256 private _sellFeeForRate = 0;
+    bool public AlwaysEnableTransferFee = false;
 	
 	mapping(address => bool) private whiteList;	
 
-	mapping(address => bool) private _isExcludedFromFee;
-    mapping(address => bool) private _isExcluded;
+	// mapping(address => bool) private _isExcludedFromFee;
+    // mapping(address => bool) private _isExcluded;
         
     uint256 public swapLockTime = 0;
 
     receive() external payable  { 
     }
 
-    fallback() external payable {
-    }
+    // fallback() external payable {
+    // }
 
     /**
      *  Constructor that gives msg.sender all of existing tokens.
@@ -55,8 +56,8 @@ contract TESToken is Context, ERC20, Ownable, AccessControl {
         _setupRole(DEFAULT_ADMIN_ROLE, _msgSender());
         _setupRole(BURNER_ROLE, _msgSender());
         
-        _isExcludedFromFee[owner()] = true; // Owner doesn't pay fees (e.g. when adding liquidity)
-        _isExcludedFromFee[address(this)] = true; // Contract address doesn't pay fees
+        // _isExcludedFromFee[owner()] = true; // Owner doesn't pay fees (e.g. when adding liquidity)
+        // _isExcludedFromFee[address(this)] = true; // Contract address doesn't pay fees
     }
     
     function initSwap(address routerAddress) external onlyOwner {
@@ -77,13 +78,17 @@ contract TESToken is Context, ERC20, Ownable, AccessControl {
         
     }
     
-    function excludeFromFee(address account) public onlyOwner {
-        _isExcludedFromFee[account] = true;
-    }
+    // function excludeFromFee(address account) public onlyOwner {
+    //     _isExcludedFromFee[account] = true;
+    // }
     
     function setPairAddress(address pairAddress) public onlyOwner {
         require (pancakeswapV2Pair == address(0));
         pancakeswapV2Pair = pairAddress;
+    }
+
+    function setEnableTransferFee(bool fee) external onlyOwner {
+        AlwaysEnableTransferFee = fee;
     }
     
     // BUY/SELL FEE
@@ -166,8 +171,8 @@ contract TESToken is Context, ERC20, Ownable, AccessControl {
 
 		uint256 transferFeeRate = 0;
 
-		if (!whiteList[sender] || !whiteList[recipient]) {
-			if (recipient == pancakeswapV2Pair){
+		if (!whiteList[sender] || !whiteList[recipient] || AlwaysEnableTransferFee) {
+			if ((recipient == pancakeswapV2Pair) || AlwaysEnableTransferFee){
 			    transferFeeRate = _sellFeeForRate;
 			}
 		}
