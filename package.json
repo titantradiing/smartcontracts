@@ -19,7 +19,7 @@
     "console-bsc-mainnet": "harhat console --network bscmainnet",
     "s3:abi": "./scripts/deploy_abi.sh"
   },
-  "author": "cqshinn92@gmail.com",
+  "author": "marketing@titantrading.io",
   "license": "ISC",
   "engines": {
     "node": "^14.17.6",

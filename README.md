@@ -6,7 +6,7 @@ Smart contract for TES which a EVM multichain token ( ERC20, BEP20, etc ) for ti
 ### Requirement Environment with Tool:
 - ubuntu >= 20.04 or macosx > 10.13.x
 - nodejs >= 14.7
-- truffle or hardhat
+- truffle or hardhat ( in this source we use hardhat )
 - docker 
 - ganache ( local dev )
 - remix ide ( options )
