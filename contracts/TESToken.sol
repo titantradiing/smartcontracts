@@ -9,7 +9,6 @@ import "@openzeppelin/contracts/access/AccessControl.sol";
 import "@uniswap/v2-periphery/contracts/interfaces/IUniswapV2Router02.sol";
 import "@uniswap/v2-core/contracts/interfaces/IUniswapV2Factory.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
-import "./abstracts/BotPrevent.sol";
 
 /**
  * @title TES Token

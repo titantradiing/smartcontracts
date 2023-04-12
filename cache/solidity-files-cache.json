@@ -43,8 +43,8 @@
       ]
     },
     "/Users/cqshinn/go/1.16.6/src/github.com/ava-labs/roi/iai/tes/contracts/TESToken.sol": {
-      "lastModificationDate": 1681251360237,
-      "contentHash": "71e9d9a52fb68e9f2dabb1213cd67555",
+      "lastModificationDate": 1681304644579,
+      "contentHash": "565d6d55920d04e076d264c7b77f944a",
       "sourceName": "contracts/TESToken.sol",
       "solcConfig": {
         "version": "0.8.7",
@@ -82,55 +82,13 @@
         "@openzeppelin/contracts/access/AccessControl.sol",
         "@uniswap/v2-periphery/contracts/interfaces/IUniswapV2Router02.sol",
         "@uniswap/v2-core/contracts/interfaces/IUniswapV2Factory.sol",
-        "@openzeppelin/contracts/utils/math/SafeMath.sol",
-        "./abstracts/BotPrevent.sol"
+        "@openzeppelin/contracts/utils/math/SafeMath.sol"
       ],
       "versionPragmas": [
         ">=0.6.5 <0.9.0"
       ],
       "artifacts": [
         "TESToken"
-      ]
-    },
-    "/Users/cqshinn/go/1.16.6/src/github.com/ava-labs/roi/iai/tes/contracts/abstracts/BotPrevent.sol": {
-      "lastModificationDate": 1681244179179,
-      "contentHash": "8e222add0ba6214408925d959794da90",
-      "sourceName": "contracts/abstracts/BotPrevent.sol",
-      "solcConfig": {
-        "version": "0.8.7",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "metadata": {
-            "bytecodeHash": "none"
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "storageLayout",
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata",
-                "devdoc",
-                "userdoc"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        ">=0.6.5 <0.9.0"
-      ],
-      "artifacts": [
-        "BotPrevent"
       ]
     },
     "/Users/cqshinn/go/1.16.6/src/github.com/ava-labs/roi/iai/tes/node_modules/@openzeppelin/contracts/access/Ownable.sol": {
