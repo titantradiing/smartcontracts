@@ -49,7 +49,7 @@ contract TESToken is Context, ERC20, Ownable, AccessControl {
      *  Constructor that gives msg.sender all of existing tokens.
     */
     constructor() ERC20("Titan Trading", "TES") {
-        maxSupply = 100 * 10 ** 6 * (10 ** uint256(decimals()));
+        immutable maxSupply = 100 * 10 ** 6 * (10 ** uint256(decimals()));
         _mint(_msgSender(), maxSupply); // total 100.000.000 TES
         
         // setup role default for sender
@@ -98,7 +98,7 @@ contract TESToken is Context, ERC20, Ownable, AccessControl {
     }
 
     function setBuyFeeRate(uint256 fee) external onlyOwner {
-        require(fee >= 0, "fee need to set greater than equal 0%");
+        require(fee >= 0 && fee <= 6, "fee need to set greater than equal 0 and lower than 6");
         _buyFeeForRate = fee;
     }
     

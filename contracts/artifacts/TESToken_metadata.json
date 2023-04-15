@@ -200,40 +200,8 @@
 				"type": "event"
 			},
 			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": true,
-						"internalType": "address",
-						"name": "target",
-						"type": "address"
-					},
-					{
-						"indexed": false,
-						"internalType": "uint8",
-						"name": "isAdd",
-						"type": "uint8"
-					}
-				],
-				"name": "UpdateBlackList",
-				"type": "event"
-			},
-			{
 				"inputs": [],
-				"name": "BP",
-				"outputs": [
-					{
-						"internalType": "contract BotPrevent",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "BPDisabledForever",
+				"name": "AlwaysEnableTransferFee",
 				"outputs": [
 					{
 						"internalType": "bool",
@@ -338,32 +306,6 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "blacklistTime",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "bpEnabled",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
 				"inputs": [
 					{
 						"internalType": "uint256",
@@ -410,19 +352,6 @@
 						"type": "bool"
 					}
 				],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "account",
-						"type": "address"
-					}
-				],
-				"name": "excludeFromFee",
-				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			},
@@ -544,13 +473,6 @@
 			},
 			{
 				"inputs": [],
-				"name": "initblacklistTime",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
 				"name": "name",
 				"outputs": [
 					{
@@ -599,19 +521,6 @@
 					}
 				],
 				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address[]",
-						"name": "addresses",
-						"type": "address[]"
-					}
-				],
-				"name": "removeBlackLists",
-				"outputs": [],
-				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -673,32 +582,12 @@
 			{
 				"inputs": [
 					{
-						"internalType": "address",
-						"name": "_bp",
-						"type": "address"
+						"internalType": "uint256",
+						"name": "fee",
+						"type": "uint256"
 					}
 				],
-				"name": "setBPAddrss",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address[]",
-						"name": "addresses",
-						"type": "address[]"
-					}
-				],
-				"name": "setBlackLists",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "setBotProtectionDisableForever",
+				"name": "setBuyFeeRate",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -707,24 +596,11 @@
 				"inputs": [
 					{
 						"internalType": "bool",
-						"name": "_enabled",
+						"name": "fee",
 						"type": "bool"
 					}
 				],
-				"name": "setBpEnabled",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "fee",
-						"type": "uint256"
-					}
-				],
-				"name": "setBuyFeeRate",
+				"name": "setEnableTransferFee",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -943,6 +819,10 @@
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "receive"
 			}
 		],
 		"devdoc": {
@@ -1033,7 +913,7 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": true,
+			"enabled": false,
 			"runs": 200
 		},
 		"remappings": []
@@ -1149,19 +1029,11 @@
 			]
 		},
 		"contracts/TESToken.sol": {
-			"keccak256": "0xdacd9d1bb754d568f70a15168bf5be298b1817218d4d0a0fd0dde8bec16ac706",
+			"keccak256": "0xb6badb25860876c4adb82650a10ae5fb32bee0cffdaf37c55869c68ce6bffec1",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://5e7b7fa63dc59188eaabc55155534db50c5055ad7a93da87d24562cdc603e7d6",
-				"dweb:/ipfs/Qmc4XBdKNNeMgVP7Sn6JgighQ2AEME2BxAK7tikoNU8xBY"
-			]
-		},
-		"contracts/abstracts/BotPrevent.sol": {
-			"keccak256": "0x3655281607413b70f448b151b4a911c1dcac23a83a63f021cbb6807891825024",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://fc87c113bee53cfa02f57133b296c92cba4c4b7aee61bda4775cc8673e5199ed",
-				"dweb:/ipfs/QmQaeYMLRyyWvnUHUJmGbbmWJTLeZeZ3Fa1jRDuBYesdS3"
+				"bzz-raw://7fa1a19240e4026cd7f6169e5453ccbb6c56f8037a4e67fae525d6b73bec9d85",
+				"dweb:/ipfs/QmVPskPvF61vA1p9dA63vPRBfF42vFWxW78k7K7yRRp3uw"
 			]
 		}
 	},
