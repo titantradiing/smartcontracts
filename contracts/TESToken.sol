@@ -26,7 +26,7 @@ contract TESToken is Context, ERC20, Ownable, AccessControl {
     address public swapBalanceAddress;    
     address public pancakeswapV2Pair;
     
-    uint256 private maxSupply;
+    uint256 immutable private maxSupply;
     
     uint256 private _buyFeeForRate = 0;
 	uint256 private _sellFeeForRate = 0;
@@ -49,7 +49,7 @@ contract TESToken is Context, ERC20, Ownable, AccessControl {
      *  Constructor that gives msg.sender all of existing tokens.
     */
     constructor() ERC20("Titan Trading", "TES") {
-        immutable maxSupply = 100 * 10 ** 6 * (10 ** uint256(decimals()));
+        maxSupply = 100 * 10 ** 6 * (10 ** uint256(decimals()));
         _mint(_msgSender(), maxSupply); // total 100.000.000 TES
         
         // setup role default for sender
