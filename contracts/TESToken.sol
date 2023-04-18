@@ -26,7 +26,7 @@ contract TESToken is Context, ERC20, Ownable, AccessControl {
     address public swapBalanceAddress;    
     address public pancakeswapV2Pair;
     
-    uint256 immutable private maxSupply;
+    uint256 private immutable maxSupply;
     
     uint256 private _buyFeeForRate = 0;
 	uint256 private _sellFeeForRate = 0;
